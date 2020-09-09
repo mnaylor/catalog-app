@@ -1,4 +1,5 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import {
     BrowserRouter as Router,
     Route
@@ -6,17 +7,34 @@ import {
 import Home from "./components/views/Home";
 import PatternSearch from "./components/views/PatternSearch";
 import FabricSearch from "./components/views/FabricSearch";
-import NavBar from "./components/navigation/NavBar";
+import NavDrawer from "./components/navigation/NavDrawer";
+import TopNavBar from "./components/navigation/TopNavBar";
 import './App.css';
 
+const useStyles = makeStyles((theme) => ({
+    root: {
+      display: 'flex',
+    },
+    content: {
+      flexGrow: 1,
+      padding: theme.spacing(3),
+      marginTop: '64px'
+    }
+  }));
+
 function App() {
+    const classes = useStyles();
+
     return (
         <Router>
-            <div>
-                <NavBar />
+            <div className={classes.root}>
+                <TopNavBar />
+                <NavDrawer />
+                <main className={classes.content}>
                     <Route exact path="/" component={Home} />
                     <Route path="/patterns" component={PatternSearch} />
-                    <Route path="/fabric" component={FabricSearch} />
+                    <Route path="/fabrics" component={FabricSearch} />
+                </main>
             </div>
         </Router>
     );
