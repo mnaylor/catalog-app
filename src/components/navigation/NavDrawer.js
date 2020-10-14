@@ -28,6 +28,8 @@ const NavigationStyles = makeStyles((theme) => ({
 function NavDrawer() {
     const classes = NavigationStyles();
 
+    const filteredRoutes = ROUTES.filter(route => route.isNavDrawer);
+
     return (
         <div>
             <Drawer
@@ -39,7 +41,7 @@ function NavDrawer() {
             >
                 <div className={classes.drawerContainer}>
                     <List>
-                        {ROUTES.map(route => (
+                        {filteredRoutes.map(route => (
                             <ListItem button component="a" key={route.path} href={route.path}>
                                 <ListItemText>
                                     {route.label}

@@ -4,11 +4,9 @@ import {
     BrowserRouter as Router,
     Route
 } from "react-router-dom";
-import Home from "./components/views/Home";
-import PatternSearch from "./components/views/PatternSearch";
-import FabricSearch from "./components/views/FabricSearch";
 import NavDrawer from "./components/navigation/NavDrawer";
 import TopNavBar from "./components/navigation/TopNavBar";
+import ROUTES from "./utils/Routes.js"
 import './App.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -31,9 +29,17 @@ function App() {
                 <TopNavBar />
                 <NavDrawer />
                 <main className={classes.content}>
-                    <Route exact path="/" component={Home} />
-                    <Route path="/patterns" component={PatternSearch} />
-                    <Route path="/fabrics" component={FabricSearch} />
+                    {
+                        ROUTES.map(
+                            route =>
+                                <Route
+                                    key={route.path}
+                                    path={route.path}
+                                    component={route.innerComponent}
+                                    exact={route.isExact}
+                                />
+                        )
+                    }
                 </main>
             </div>
         </Router>
