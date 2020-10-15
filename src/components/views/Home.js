@@ -1,25 +1,28 @@
 import React from 'react';
-import GalleryCard from '../gallery/GalleryCard';
-import TypeConstants from "../../utils/TypeConstants.js"
+import { makeStyles } from '@material-ui/core/styles';
+import Gallery from '../common/Gallery';
+import patterns from "../../testData/patterns.js";
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'space-around',
+      overflow: 'hidden',
+      backgroundColor: theme.palette.background.paper,
+    },
+    gridList: {
+      width: '90%',
+      height: '100%',
+    },
+  }));
 
 function Home() {
-    const testCard = {
-        id: "some-id",
-        title: "pattern title",
-        subheader: "pattern company",
-        image: "bar",
-        cardType: TypeConstants.PATTERN
-    }
+    const classes = useStyles();
 
     return (
-        <div>
-            <GalleryCard
-                title={testCard.title}
-                subheader={testCard.subheader}
-                id={testCard.id}
-                image={testCard.image}
-                cardType={testCard.cardType}
-            />
+        <div className={classes.root}>
+            <Gallery items={patterns}/>
         </div>
     )
 }

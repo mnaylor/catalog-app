@@ -43,6 +43,14 @@ function PatternView(props) {
         }
     ];
 
+    function getPhotoGallery() {
+        return (
+            <Paper>
+
+            </Paper>
+        )
+    }
+
     function getMetadataCard() {
         return (
             <Paper className={classes.root}>
